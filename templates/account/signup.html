@@ -1,0 +1,69 @@
+{% load socialaccount %}
+{% load account socialaccount %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Hello </title>
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <meta http-equiv="REFRESH" content="0;url={% url 'home' %}">
+    {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Backend Task</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="{%  url 'home'  %}">Home <span class="sr-only">(current)</span></a>
+          {% if user.is_authenticated %}
+                <a class="nav-item nav-link" href="{%  url 'account_logout'   %}">Logout</a>
+          {% else %}
+                <a class="nav-item nav-link" href="{%  url 'account_login'   %}">Login</a>
+                <a class="nav-item nav-link" href="{%  url 'account_signup'   %}">SignUp</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    {% if user.is_authenticated %}
+      <meta http-equiv="REFRESH" content="0;url= {% url home %}">
+    {% endif %}
+    <div class="container text-dark mt-5">
+        <div class="row justify-content-md-center">
+          <div class="col-md-5 bg-grey p-3">
+            <form class="form-signup">
+              <h1 class="h3 mb-3">Sign Up</h1>
+              <form class="signup" id="signup_form" method="post" action="/accounts/signup/">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="ATcllxjYHmqQ1ndCuczwPcvRkkKq6mNAVLNIvxkniA1yZMT0emDda5xrn81g9ZT3">
+                    <label class="sr-only" for="id_username">Username:</label>
+                    <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="username" minlength="1" maxlength="150" required id="id_username"></p>
+                    <label class="sr-only" for="id_email">E-mail (optional):</label>
+                    <input type="email" name="email" class="form-control" placeholder="E-mail address" autocomplete="email" id="id_email"></p>
+                    <label class="sr-only" for="id_password1">Password:</label>
+                    <input type="password"  class="form-control" name="password1" placeholder="Password" autocomplete="new-password" required id="id_password1"></p>
+                    <label class="sr-only" for="id_password2">Password (again):</label>
+                    <input type="password" name="password2" class="form-control" placeholder="Password (again)" autocomplete="new-password" required id="id_password2"></p>
+            
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up </button>
+              </form>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
+</html>
